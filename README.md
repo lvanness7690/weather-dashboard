@@ -15,7 +15,7 @@ To search for a city enter the text in the search bar and hit enter. The 5 day f
 
 Here is a screenshot fo the website in action:
 
-![Alt text](weather-dashboard-demo.png)
+![Alt text](/assets/weather-dashboard-demo.png)
 
 Here is a link of the website:
 
