@@ -76,5 +76,32 @@ function displayWeather(weatherData, cityName) {
             searchCity(cityName).catch(error => console.error('Search City Error:', error));
         });
         historyList.appendChild(newHistoryItem);
+
+        // Save to local storage
+        saveToLocalStorage(cityName);
     }
 }
+
+function saveToLocalStorage(cityName) {
+    let cities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+    if (!cities.includes(cityName)) {
+        cities.push(cityName);
+        localStorage.setItem('searchedCities', JSON.stringify(cities));
+    }
+}
+
+function loadFromLocalStorage() {
+    let cities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+    const historyList = document.getElementById('history-list');
+    cities.forEach(cityName => {
+        const historyItem = document.createElement('li');
+        historyItem.textContent = cityName;
+        historyItem.addEventListener('click', () => {
+            searchCity(cityName).catch(error => console.error('Search City Error:', error));
+        });
+        historyList.appendChild(historyItem);
+    });
+}
+
+// Load previously searched cities from local storage when the page loads
+document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
